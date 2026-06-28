@@ -5,11 +5,17 @@ export const routes: Routes = [
   {
     path: 'catalog',
     loadComponent: () =>
-      loadRemoteModule('catalog', './Component').then((m) => m.AppComponent),
+      loadRemoteModule('catalog', './Component').then((m) => m.AppComponent)
   },
   {
-    path: '',
-    redirectTo: 'catalog',
-    pathMatch: 'full',
+    path: 'auth/login',
+    loadComponent: () =>
+      loadRemoteModule('auth', './LoginComponent').then((m) => m.LoginComponent)
   },
+  {
+    path: 'auth/register',
+    loadComponent: () =>
+      loadRemoteModule('auth', './RegisterComponent').then((m) => m.RegisterComponent)
+  },
+  { path: '', redirectTo: 'catalog', pathMatch: 'full' }
 ];

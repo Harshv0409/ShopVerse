@@ -1,15 +1,15 @@
 <header class="header">
-  <div class="logo">ShopVerse</div>
+  <div class="logo" routerLink="/catalog">ShopVerse</div>
+
   <div class="search-bar">
     <input type="text" placeholder="Search products..." />
-     <button mat-icon-button>
-      <mat-icon>search</mat-icon>
-    </button>
+    <button mat-icon-button><mat-icon>search</mat-icon></button>
   </div>
-   <div class="cart-icon">
-    <button mat-icon-button>
+
+  <div class="header-actions">
+    <button class="login-btn" routerLink="/auth/login">Login</button>
+    <button mat-icon-button routerLink="/catalog">
       <mat-icon>shopping_cart</mat-icon>
     </button>
-    Cart
   </div>
 </header>
