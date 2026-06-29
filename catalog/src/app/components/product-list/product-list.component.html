@@ -1,37 +1,41 @@
-<!-- <div class="product-grid">
-  <div class="product-card" *ngFor="let product of products">
-    <img [src]="product.image" [alt]="product.name" />
-    <div class="card-body">
-      <span class="category">{{ product.category }}</span>
-      <h3>{{ product.name }}</h3>
-      <div class="rating">&#9733; {{ product.rating }}</div>
-      <div class="price">₹{{ product.price }}</div>
-      <button>Add to Cart</button>
-    </div>
-  </div>
-</div> -->
+<!-- Toast Notification -->
+<div class="toast" *ngIf="showToast">{{ toastMessage }}</div>
 
-
-<!-- Loading state — jab tak API se data na aaye -->
+<!-- Loading state -->
 <div *ngIf="loading" style="text-align:center; padding: 40px; font-size: 18px;">
   Loading products...
 </div>
 
-<!-- Error state — agar API call fail ho -->
+<!-- Error state -->
 <div *ngIf="error" style="text-align:center; padding: 40px; color: red;">
   {{ error }}
 </div>
 
-<!-- Products grid — jab data aa jaye -->
+<!-- Products grid -->
 <div class="product-grid" *ngIf="!loading && !error">
   <div class="product-card" *ngFor="let product of products">
+
+    <!-- Category badge -->
+    <span class="badge">{{ product.category }}</span>
     <img [src]="product.image" [alt]="product.name" />
+
     <div class="card-body">
       <span class="category">{{ product.category }}</span>
       <h3>{{ product.name }}</h3>
       <div class="rating">&#9733; {{ product.rating }}</div>
-      <div class="price">₹{{ product.price }}</div>
-      <button>Add to Cart</button>
+
+      <div class="price-row">
+        <span class="price">₹{{ product.price | number }}</span>
+      </div>
+
+      <!-- Button state changes agar cart mein hai -->
+      <button
+        class="add-to-cart-btn"
+        [class.added]="isInCart(product.id)"
+        [disabled]="isInCart(product.id)"
+        (click)="addToCart(product)">
+        {{ isInCart(product.id) ? '✓ Added to Cart' : 'Add to Cart' }}
+      </button>
     </div>
   </div>
 </div>

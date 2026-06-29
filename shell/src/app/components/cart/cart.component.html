@@ -1,0 +1,31 @@
+<!-- Cart Page -->
+<div class="cart-container">
+  <h2>Your Cart</h2>
+
+  <!-- Khali cart -->
+  <div class="empty-cart" *ngIf="cartItems.length === 0">
+    <p>Your cart is empty!</p>
+    <button routerLink="/catalog">Continue Shopping</button>
+  </div>
+
+  <!-- Cart items -->
+  <div *ngIf="cartItems.length > 0">
+    <div class="cart-item" *ngFor="let item of cartItems">
+      <img [src]="item.product.image" [alt]="item.product.name" />
+      <div class="item-details">
+        <h3>{{ item.product.name }}</h3>
+        <span class="category">{{ item.product.category }}</span>
+        <div class="price">₹{{ item.product.price | number }}</div>
+        <div class="quantity">Quantity: {{ item.quantity }}</div>
+        <div class="item-total">Total: ₹{{ item.product.price * item.quantity | number }}</div>
+      </div>
+      <button class="remove-btn" (click)="removeItem(item.product.id)">Remove</button>
+    </div>
+
+    <!-- Total -->
+    <div class="cart-total">
+      <h3>Grand Total: ₹{{ totalPrice | number }}</h3>
+      <button class="checkout-btn">Proceed to Checkout</button>
+    </div>
+  </div>
+</div>

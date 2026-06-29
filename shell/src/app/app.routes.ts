@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { loadRemoteModule } from '@angular-architects/native-federation';
+import { CartComponent } from './components/cart/cart.component';
 
 export const routes: Routes = [
   {
@@ -16,6 +17,10 @@ export const routes: Routes = [
     path: 'auth/register',
     loadComponent: () =>
       loadRemoteModule('auth', './RegisterComponent').then((m) => m.RegisterComponent)
+  },
+  {
+    path: 'cart',
+    component: CartComponent  // Cart shell mein hi hai, lazy load nahi chahiye
   },
   { path: '', redirectTo: 'catalog', pathMatch: 'full' }
 ];
